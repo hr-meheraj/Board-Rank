@@ -38,7 +38,7 @@
             <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
             <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}">Previous</a></li>
             {% endif %}
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link">Page {{ students.number }} of {{ students.paginator.num_pages }}</a></li>
             {% if students.has_next %}
             <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}">Next</a></li>
             <li class="page-item"><a class="page-link" href="?page={{ students.paginator.num_pages }}">last &raquo;</a></li>
