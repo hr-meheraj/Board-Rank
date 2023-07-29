@@ -6,50 +6,45 @@
     <title>Board Rank</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   </head>
-  <body>
-    <div class='container'>
-        <table class="table table-striped  table-dark table-hover">
-            <thead>
+  <body style='background-color:#0d1117;'>
+    <h3><center style='color:white;'>Board Rank prepared by Md Foisal</center></h3>
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Roll</th>
+            <th scope="col">GPA</th>
+            <th scope="col">Total</th>
+            <th scope="col">School</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in students %}
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Roll</th>
-                <th scope="col">GPA</th>
-                <th scope="col">Total</th>
-                <th scope="col">School</th>
+                    <th scope="row">{{ forloop.counter|add:r }}</th>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.roll }}</td>
+                    <td>{{ i.gpa }}</td>
+                    <td>{{ i.number }}</td>
+                    <td>{{ i.school }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for i in students %}
-                    <tr>
-                        <th scope="row">{{ forloop.counter|add:r }}</th>
-                        <td>{{ i.name }}</td>
-                        <td>{{ i.roll }}</td>
-                        <td>{{ i.gpa }}</td>
-                        <td>{{ i.number }}</td>
-                        <td>{{ i.school }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="pagination">
-            <span class="step-links">
-                {% if students.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ students.previous_page_number }}">previous</a>
-                {% endif %}
-        
-                <span class="current">
-                    Page {{ students.number }} of {{ students.paginator.num_pages }}.
-                </span>
-        
-                {% if students.has_next %}
-                    <a href="?page={{ students.next_page_number }}">next</a>
-                    <a href="?page={{ students.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if students.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            {% if students.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ students.paginator.num_pages }}">last &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   </body>
 </html>
